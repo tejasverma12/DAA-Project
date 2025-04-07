@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fibonacci Problem</title>
+    <link rel="stylesheet" href="fibonacistyle.css">
+</head>
+<body>
+    <h1>Fibonacci Problem </h1>
+    <div>
+        <label for="capacity" class="label">Which term of fibonnaci you want to display :</label>
+        <input type="number" id="terms" class="input" placeholder="Enter the term number"><br><br>
+        <div class="btns"><button id="solvefibonnaciBtn" class="btn">Solve Fibonnaci Problem</button></div>
+        <p id="result" class="answer"></p>
+    </div>
+
+    <script>
+        function generateFibonacci() {
+            const terms = parseInt(document.getElementById("terms").value);
+            const n = terms;
+            const numbersArray = [];
+            numbersArray.push(0);
+            numbersArray.push(1);
+            if (n <= 0) {
+                document.getElementById("result").innerText = "Please enter a valid number of terms.";
+                return;
+            } else if (n == 1) {
+                document.getElementById("result").innerText = "The Number at 1 term is 0";
+                return;
+            } else {
+                for (let i = 2; i < n; i++) {
+                    numbersArray.push(numbersArray[i - 1] + numbersArray[i - 2]);
+                }
+                const result = numbersArray[numbersArray.length - 1];
+                document.getElementById("result").innerText = "The Number at " + n + " term is " + result;
+            }
+        }
+        document.getElementById("solvefibonnaciBtn").addEventListener("click", generateFibonacci);
+    </script>
+</body>
+</html>

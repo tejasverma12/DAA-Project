@@ -1,0 +1,37 @@
+body{
+    background-color: blue;
+    padding: 30px;
+}
+
+h1{
+    font-size: 64px;
+    text-align: center;
+    color: aqua;
+}
+
+.label{
+    font-size: 28px;
+    color: aqua;
+}
+
+.input{
+    border-radius: 10px;
+    font-size: 22px;
+}
+
+.btn{
+    border-radius: 20px;
+    font-size: 20px;
+    height: 60px;
+    width: 250px;
+}
+
+.btns :hover{
+    background-color: rgb(177, 177, 239);
+    box-shadow: 0 20px 30px 0;
+}
+
+.answer{
+    color: aqua;
+    font-size: 30px;
+}

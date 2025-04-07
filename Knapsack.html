@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Knapsack Problem Solver</title>
+    <link rel="stylesheet" href="knapsackstyle.css">
+</head>
+<body>
+    <h1>Knapsack Problem </h1>
+    <div>
+        <label for="capacity" class="capacity">Knapsack Capacity:</label>
+        <input type="number" id="capacity" class="input" placeholder="Enter capacity"><br><br>
+
+        <label for="weights" class="capacity">Weights:</label>
+        <input type="text" id="weights" class="input" placeholder="Enter weights separated by commas"><br><br>
+
+        <label for="values" class="capacity">Values:</label>
+        <input type="text" id="values" class="input" placeholder="Enter values separated by commas"><br><br>
+
+        <div class="btns"><button id="solveKnapsackBtn" class="btn">Solve Knapsack Problem</button></div>
+        <p id="result" class="answer"></p>
+    </div>
+
+    <script>
+        function solveKnapsack() {
+            const capacity = parseInt(document.getElementById("capacity").value);
+            const weights = document.getElementById("weights").value.split(",").map(Number);
+            const values = document.getElementById("values").value.split(",").map(Number);
+            
+            function knapsack(capacity, weights, values, n) {
+                const dp = Array(n + 1).fill(0).map(() => Array(capacity + 1).fill(0));
+
+                for (let i = 1; i <= n; i++) {
+                    for (let w = 1; w <= capacity; w++) {
+                        if (weights[i - 1] <= w) {
+                            dp[i][w] = Math.max(values[i - 1] + dp[i - 1][w - weights[i - 1]], dp[i - 1][w]);
+                        } else {
+                            dp[i][w] = dp[i - 1][w];
+                        }
+                    }
+                }
+                return dp[n][capacity];
+            }
+
+            const n = weights.length;
+            const result = knapsack(capacity, weights, values, n);
+            document.getElementById("result").innerText = "Maximum value that can be obtained: " + result;
+        }
+
+        document.getElementById("solveKnapsackBtn").addEventListener("click", solveKnapsack);
+    </script>
+</body>
+</html>
